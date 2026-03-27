@@ -4,449 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinetron Technologies - Innovating Beyond Boundaries</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><circle fill="%23ffffff" opacity="0.1" cx="200" cy="150" r="80"/><circle fill="%23ffffff" opacity="0.05" cx="1000" cy="400" r="120"/><path fill="%23ffffff" opacity="0.03" d="M300 500Q400 450 500 500T700 500"/></svg>');
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .cta-button {
-            background: #ff6b6b;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,107,107,0.4);
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        /* Products Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .product-icon {
-            font-size: 4rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: #764ba2;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            padding: 0 2rem;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 1rem 0;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(37,211,102,0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: #667eea;
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .products-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Kinetron Technologies</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://via.placeholder.com/50x50/00bfff/ffffff?text=KT" alt="Logo">
+                Kinetron Technologies
+                <div class="tagline">Innovating Beyond Boundaries</div>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="microcontrollers.html" class="nav-link">Microcontrollers</a></li>
+                <li><a href="sensors.html" class="nav-link">Sensors</a></li>
+                <li><a href="motors.html" class="nav-link">Motors & Drivers</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Innovating Beyond Boundaries</h1>
-        <p class="tagline">Empowering creators with cutting-edge electronics and maker solutions</p>
-        <a href="#products" class="cta-button">Explore Products</a>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products">
-        <h2 class="section-title">Electronics Components</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-microchip"></i>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Kinetron Technologies</h1>
+                <p>Innovating Beyond Boundaries</p>
+                <div>
+                    <a href="#components" class="btn">Explore Components</a>
+                    <a href="services.html" class="btn" style="margin-left: 1rem; background: rgba(255,255,255,0.1);">Our Services</a>
                 </div>
-                <h3>Arduino Boards</h3>
-                <p>Complete range of Arduino Uno, Nano, Mega and specialized boards for all your prototyping needs.</p>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <h3>Sensors</h3>
-                <p>Ultrasonic, temperature, humidity, motion, light sensors and more for smart projects.</p>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-cogs"></i>
-                </div>
-                <h3>Motors & Drivers</h3>
-                <p>DC motors, stepper motors, servo motors with complete driver modules and controllers.</p>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" style="background: #f8f9fa;">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-hands-helping"></i>
+    <!-- Components Section -->
+    <section id="components" class="section">
+        <div class="container">
+            <h2 class="section-title">Electronics Components</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-microchip"></i></div>
+                    <h3>Microcontrollers</h3>
+                    <p>Arduino, ESP32, STM32, Raspberry Pi and more for your projects</p>
+                    <a href="microcontrollers.html" class="btn" style="margin-top: 1.5rem;">View Collection</a>
                 </div>
-                <h3>Project Support</h3>
-                <p>Expert guidance from concept to completion. PCB design, CAD design, and troubleshooting.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-flask"></i>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-eye"></i></div>
+                    <h3>Sensors</h3>
+                    <p>Complete range of ultrasonic, IR, temperature, and motion sensors</p>
+                    <a href="sensors.html" class="btn" style="margin-top: 1.5rem;">View Collection</a>
                 </div>
-                <h3>Lab Access</h3>
-                <p>Fully equipped electronics lab with oscilloscopes, power supplies, and testing equipment available 24/7.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-print"></i>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Motors & Drivers</h3>
+                    <p>DC motors, servos, steppers, and professional motor drivers</p>
+                    <a href="motors.html" class="btn" style="margin-top: 1.5rem;">View Collection</a>
                 </div>
-                <h3>3D Printing</h3>
-                <p>High-quality FDM and SLA printing services for prototypes and custom enclosures.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="contact-content">
-            <div>
-                <h2 class="section-title" style="color: white; margin-bottom: 2rem;">Get In Touch</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">Ready to start your next project? We're here to help!</p>
-                <a href="https://wa.me/+918792159643?text=Hi%20Kinetron%20Technologies%2C%20I'm%20interested%20in%20your%20products%20and%20services!" class="whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    Start WhatsApp Chat
-                </a>
-            </div>
-            <div>
-                <h3 style="margin-bottom: 1rem;">Contact Info</h3>
-                <p><i class="fas fa-phone"></i> +91 879215943</p>
-                <p><i class="fas fa-envelope"></i> info@kinetrontechnologies.com</p>
-                <p><i class="fas fa-map-marker-alt"></i>  Adarsh Nagar, 322, Nanjappa Layout, Arasinakunte, Nelamangala, Karnataka 562123</p>
+    <!-- Services Preview -->
+    <section class="section" style="background: rgba(0,0,0,0.3);">
+        <div class="container">
+            <h2 class="section-title">Premium Services</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Project Support</h3>
+                    <p>Expert guidance for your electronics projects</p>
+                    <a href="services.html#project-support" class="btn" style="margin-top: 1.5rem;">Get Support</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Lab Access</h3>
+                    <p>Professional lab facilities for your experiments</p>
+                    <a href="services.html#lab-access" class="btn" style="margin-top: 1.5rem;">Book Lab</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-print"></i></div>
+                    <h3>3D Printing</h3>
+                    <p>High-quality 3D printing services</p>
+                    <a href="services.html#3d-printing" class="btn" style="margin-top: 1.5rem;">Order Print</a>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kinetron Technologies. All rights reserved.</p>
-    </footer>
 
     <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                // Close mobile menu if open
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(102, 126, 234, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Animate cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.product-card, .service-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
-</body>
-</html>
+        // Particles animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
+                particle.style.animationDelay = Math.random()
