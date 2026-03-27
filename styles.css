@@ -10,11 +10,11 @@
 :root {
     --primary-blue: #00bfff;
     --neon-blue: #1e90ff;
-    --dark-bg: #0a0a0a;
-    --concrete-dark: #1a1a1a;
-    --concrete-light: #2a2a2a;
-    --text-light: #e0e0e0;
-    --text-muted: #a0a0a0;
+    --dark-bg: #f8fafc;              /* Light white */
+    --concrete-dark: #e2e8f0;        /* Light gray */
+    --concrete-light: #cbd5e1;       /* Lighter gray */
+    --text-light: #1e293b;           /* Dark text */
+    --text-muted: #64748b;           /* Medium gray text */
     --glow-blue: 0 0 20px rgba(0, 191, 255, 0.5);
     --glow-neon: 0 0 30px rgba(0, 191, 255, 0.7);
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -22,7 +22,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--concrete-dark) 50%, var(--concrete-light) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, var(--concrete-light) 50%, var(--concrete-dark) 100%););
     background-attachment: fixed;
     color: var(--text-light);
     overflow-x: hidden;
@@ -40,7 +40,8 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(10, 10, 10, 0.95);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 191, 255, 0.2);
     backdrop-filter: blur(20px);
     z-index: 1000;
     padding: 1rem 0;
