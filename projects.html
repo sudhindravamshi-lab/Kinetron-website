@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Support - Kinetron Technologies</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .project-card { background: rgba(0,0,34,0.6); padding: 2rem; border-radius: 20px; border: 1px solid rgba(25,131,196,0.2); transition: all 0.4s ease; }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .project-card h3 { color: white; font-family: 'Lexend', sans-serif; margin-bottom: 1rem; }
+        .custom-form { max-width: 600px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <!-- Navbar (Copy from index.html) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-microchip"></i>
+                Kinetron
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="electronics.html" class="nav-link">Electronics</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="courses.html" class="nav-link">Courses</a></li>
+                <li><a href="3d-printing.html" class="nav-link">3D Printing</a></li>
+                <li><a href="tel:+918792159643" class="nav-link"><i class="fab fa-whatsapp"></i> Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Project Support</h1>
+            <p class="hero-subtitle">Complete support for mini & final year projects</p>
+            <a href="#ready-projects" class="btn btn-primary glow-btn">View Ready Projects</a>
+        </div>
+    </section>
+
+    <!-- Ready Projects Section -->
+    <section id="ready-projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Ready Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <i class="fas fa-robot" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block;"></i>
+                    <h3>Smart Home Automation</h3>
+                    <p>Voice controlled home automation using ESP32 & Google Assistant</p>
+                    <button class="btn btn-secondary project-details-btn" data-target="smart-home">Get Details</button>
+                </div>
+                <div class="project-card fade-in">
+                    <i class="fas fa-car" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block;"></i>
+                    <h3>Self Balancing Robot</h3>
+                    <p>Advanced PID controlled self-balancing robot with Bluetooth control</p>
+                    <button class="btn btn-secondary project-details-btn" data-target="robot">Get Details</button>
+                </div>
+                <div class="project-card fade-in">
+                    <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block;"></i>
+                    <h3>Health Monitoring System</h3>
+                    <p>Wearable device for heart rate, temperature & SpO2 monitoring with app</p>
+                    <button class="btn btn-secondary project-details-btn" data-target="health">Get Details</button>
+                </div>
+                <div class="project-card fade-in">
+                    <i class="fas fa-solar-panel" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block;"></i>
+                    <h3>Solar Tracking System</h3>
+                    <p>MPPT solar tracker with IoT monitoring & maximum power optimization</p>
+                    <button class="btn btn-secondary project-details-btn" data-target="solar">Get Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Project Form -->
+    <section id="custom-project" class="form-section">
+        <div class="container">
+            <h2 class="section-title">Custom Project Development</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: var(--text-light); font-size: 1.2rem;">
+                Have a unique project idea? Tell us your requirements and we'll make it reality!
+            </p>
+            <form class="contact-form custom-form" data-success-msg="We will contact you within 24 hours">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="College/University" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Project Topic / Description" rows="4" required style="resize: vertical; min-height: 120px;"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="date" placeholder="Deadline" required>
+                </div>
+                <button type="submit" class="btn btn-primary glow-btn">Get Quote</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-microchip"></i>
+                    <div>
+                        <h3>Kinetron Technologies</h3>
+                        <p>Innovating Beyond Boundaries</p>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fas fa-phone"></i> 8792159643</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Peenya, Bangalore</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kinetron Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/918792159643?text=Hi%2C%20I%20am%20interested%20in%20Project%20Support" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        // Project details buttons
+        document.querySelectorAll('.project-details-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const project = btn.dataset.target;
+                const messages = {
+                    'smart-home': 'Hi, I am interested in Smart Home Automation project details.',
+                    'robot': 'Hi, I am interested in Self Balancing Robot project details.',
+                    'health': 'Hi, I am interested in Health Monitoring System project details.',
+                    'solar': 'Hi, I am interested in Solar Tracking System project details.'
+                };
+                window.open(`https://wa.me/918792159643?text=${encodeURIComponent(messages[project])}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
