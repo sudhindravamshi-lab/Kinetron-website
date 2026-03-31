@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Kinetron Technologies</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .course-card { background: rgba(0,0,34,0.6); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(25,131,196,0.2); position: relative; overflow: hidden; }
+        .course-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--secondary)); }
+        .course-icon { font-size: 4rem; color: var(--primary); margin-bottom: 1.5rem; display: block; }
+        .course-card h3 { font-family: 'Lexend', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; color: white; }
+        .outcome { background: rgba(25,131,196,0.2); padding: 1rem 1.5rem; border-radius: 10px; margin: 1.5rem 0; border-left: 4px solid var(--primary); }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Same navbar code with "Courses" active -->
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-microchip"></i>
+                Kinetron
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="electronics.html" class="nav-link">Electronics</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="courses.html" class="nav-link active">Courses</a></li>
+                <li><a href="3d-printing.html" class="nav-link">3D Printing</a></li>
+                <li><a href="tel:+918792159643" class="nav-link"><i class="fab fa-whatsapp"></i> Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Industry Ready Courses</h1>
+            <p class="hero-subtitle">Master PCB Design, PLC & AI Prompt Engineering</p>
+            <a href="#courses" class="btn btn-primary glow-btn">Enroll Now</a>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <div class="course-grid">
+                <div class="course-card fade-in">
+                    <i class="fas fa-layer-group course-icon"></i>
+                    <h3>PCB Design Mastery</h3>
+                    <p>From schematic capture to fabrication-ready Gerber files</p>
+                    <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <li>✓ KiCAD/EasyEDA complete workflow</li>
+                        <li>✓ Schematic design & component selection</li>
+                        <li>✓ Multi-layer PCB layout</li>
+                        <li>✓ DRC, ERC & manufacturing files</li>
+                    </ul>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Design real PCBs for production
+                    </div>
+                    <button class="btn btn-primary enroll-btn" data-course="pcb">Enroll Now</button>
+                </div>
+
+                <div class="course-card fade-in">
+                    <i class="fas fa-industry course-icon"></i>
+                    <h3>PLC Training</h3>
+                    <p>Industrial automation from basics to advanced ladder logic</p>
+                    <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <li>✓ PLC hardware & wiring</li>
+                        <li>✓ Ladder logic programming</li>
+                        <li>✓ HMI/SCADA integration</li>
+                        <li>✓ Real industrial projects</li>
+                    </ul>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> Ready for automation industry jobs
+                    </div>
+                    <button class="btn btn-primary enroll-btn" data-course="plc">Enroll Now</button>
+                </div>
+
+                <div class="course-card fade-in">
+                    <i class="fas fa-brain course-icon"></i>
+                    <h3>Prompt Engineering</h3>
+                    <p>Master AI tools for maximum productivity</p>
+                    <ul style="margin: 1.5rem 0; padding-left: 1.5rem;">
+                        <li>✓ Advanced ChatGPT techniques</li>
+                        <li>✓ Custom GPTs & automation</li>
+                        <li>✓ AI for coding & design</li>
+                        <li>✓ Multi-modal AI workflows</li>
+                    </ul>
+                    <div class="outcome">
+                        <strong>Outcome:</strong> 10x your productivity with AI
+                    </div>
+                    <button class="btn btn-primary enroll-btn" data-course="prompt">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enrollment Form Modal Style -->
+    <style>
+        .enroll-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            backdrop-filter: blur(10px);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,34,0.95);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(25,131,196,0.3);
+        }
+    </style>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollModal" class="enroll-modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Course Enrollment</h3>
+            <form id="enrollForm" class="contact-form" data-success-msg="Enrollment request sent! We will contact you within 24 hours">
+                <div class="form-group">
+                    <input type="text" id="enrollName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="enrollPhone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="enrollEmail" placeholder="Email (optional)">
+                </div>
+                <div class="form-group">
+                    <select id="courseSelect" required>
+                        <option value="">Select Course</option>
+                        <option value="PCB Design Mastery">PCB Design Mastery</option>
+                        <option value="PLC Training">PLC Training</option>
+                        <option value="Prompt Engineering">Prompt Engineering</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <button type="button" id="closeModal" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+                    <button type="submit" class="btn btn-primary glow-btn" style="flex: 2;">Confirm Enrollment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-microchip"></i>
+                    <div>
+                        <h3>Kinetron Technologies</h3>
+                        <p>Innovating Beyond Boundaries</p>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fas fa-phone"></i> 8792159643</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Peenya, Bangalore</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kinetron Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/918792159643?text=Hi%2C%20I%20want%20to%20enroll%20in%20a%20course" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        // Course enrollment buttons
+        document.querySelectorAll('.enroll-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const course = btn.dataset.course;
+                const titles = {
+                    pcb: 'PCB Design Mastery',
+                    plc: 'PLC Training', 
+                    prompt: 'Prompt Engineering'
+                };
+                document.getElementById('modalTitle').textContent = `${titles[course]} - Enrollment`;
+                document.getElementById('courseSelect').value = titles[course];
+                document.getElementById('enrollModal').style.display = 'block';
+            });
+        });
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('enrollModal').style.display = 'none';
+        });
+
+        // Close on outside click
+        document.getElementById('enrollModal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('enroll-modal')) {
+                document.getElementById('enrollModal').style.display = 'none';
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('enrollModal').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            document.getElementById('enrollModal').style.display = 'none';
+        });
+
+        // Close on outside click
+        document.getElementById('enrollModal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('enroll-modal
