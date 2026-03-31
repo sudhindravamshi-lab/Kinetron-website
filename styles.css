@@ -1,4 +1,18 @@
-* {
+/* Page Load States */
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Button pulse on load */
+.hero-buttons .btn {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 10px 30px rgba(25,131,196,0.4); }
+    100% { box-shadow: 0 15px 50px rgba(25,131,196,0.7); }
+}* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
