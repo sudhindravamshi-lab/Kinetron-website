@@ -540,3 +540,51 @@ body.loaded {
     opacity: 1;
     transform: translateY(0);
 }
+const trailStyle = document.createElement('style');
+trailStyle.textContent = `
+    @keyframes trailFade {
+        to {
+            opacity: 0;
+            transform: scale(2) translateY(-20px);
+        }
+    }
+    #preloader .preloader-content {
+        text-align: center;
+        color: var(--text-light);
+    }
+    .logo-spin {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-family: 'Lexend', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 2rem;
+    }
+    .logo-spin i {
+        font-size: 3rem;
+        animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .loader-bar {
+        width: 300px;
+        height: 6px;
+        background: rgba(25,131,196,0.2);
+        border-radius: 3px;
+        margin: 0 auto 1rem;
+        overflow: hidden;
+    }
+    .loader-progress {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 3px;
+        width: 0%;
+        transition: width 0.3s ease;
+        box-shadow: 0 0 20px var(--primary);
+    }
+`;
+document.head.appendChild(trailStyle);
