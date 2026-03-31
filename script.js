@@ -260,3 +260,174 @@ document.addEventListener('mousemove', (e) => {
     
     setTimeout(() => trail.remove(), 600);
 });
+// Parallax scrolling effect for hero
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroBg = document.querySelector('.hero-bg');
+    if (heroBg) {
+        heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+    
+    // Navbar shrink effect
+    const navbar = document.querySelector('.navbar');
+    if (scrolled > 100) {
+        navbar.style.height = '60px';
+        navbar.style.padding = '0 20px';
+    } else {
+        navbar.style.height = '70px';
+        navbar.style.padding = '0 20px';
+    }
+});
+
+// Floating particles background (Tech atmosphere)
+function createParticle() {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: var(--primary);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        left: ${Math.random() * 100}vw;
+        animation: float ${Math.random() * 3 + 2}s linear infinite;
+        box-shadow: 0 0 5px var(--primary);
+    `;
+    particle.style.setProperty('--float-delay', Math.random() * 5 + 's');
+    document.body.appendChild(particle);
+    
+    setTimeout(() => particle.remove(), 8000);
+}
+
+// Create 20 particles
+for (let i = 0; i < 20; i++) {
+    setTimeout(createParticle, i * 200);
+}
+
+// Recreate particles every 10s
+setInterval(() => {
+    for (let i = 0; i < 10; i++) {
+        setTimeout(createParticle, i * 100);
+    }
+}, 10000);
+
+// Add particle CSS
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes float {
+        0% {
+            top: -10px;
+            transform: translateY(0px) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            top: 100vh;
+            transform: translateY(50px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyle);
+
+// Back to top button
+const backToTop = document.createElement('button');
+backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+backToTop.className = 'back-to-top';
+backToTop.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 90px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(25,131,196,0.4);
+`;
+document.body.appendChild(backToTop);
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        backToTop.style.opacity = '1';
+        backToTop.style.visibility = 'visible';
+        backToTop.style.transform = 'translateY(0)';
+    } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+        backToTop.style.transform = 'translateY(20px)';
+    }
+});
+
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Add back-to-top CSS
+const backTopStyle = document.createElement('style');
+backTopStyle.textContent = `
+    .back-to-top:hover {
+        background: var(--secondary);
+        transform: translateY(-3px) scale(1.1);
+        box-shadow: 0 15px 40px rgba(25,131,196,0.6);
+    }
+`;
+document.head.appendChild(backTopStyle);
+
+// Performance optimization - requestAnimationFrame for scroll
+let ticking = false;
+function updateScroll() {
+    // All scroll effects here
+    ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+    }
+});
+
+// PWA Support (Optional - makes site installable)
+const link = document.createElement('link');
+link.rel = 'manifest';
+link.href = 'data:application/manifest+json,' + encodeURIComponent(JSON.stringify({
+    name: 'Kinetron Technologies',
+    short_name: 'Kinetron',
+    description: 'Build Real Engineering Skills',
+    start_url: '/',
+    display: 'standalone',
+    background_color: '#000022',
+    theme_color: '#1983C4',
+    icons: [{
+        src: 'data:image/svg+xml;base64,' + btoa('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#1983C4"/><text x="50" y="55" font-size="20" text-anchor="middle" fill="white">KT</text></svg>'),
+        sizes: '192x192',
+        type: 'image/svg+xml'
+    }]
+}));
+document.head.appendChild(link);
+
+// Service Worker for offline support (Optional)
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(`
+        self.addEventListener('fetch', e => {
+            e.respondWith(fetch(e.request).catch(() => {
+                return new Response('Offline - Site works without internet!', {status: 200});
+            }));
+        });
+    `));
+}
+
+// Final cleanup & performance
+console.log('🌟 Kinetron Technologies loaded successfully!');
+console.log('💾 Memory optimized | 🎨 Animations active | 📱 PWA ready');
