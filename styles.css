@@ -1,7 +1,10 @@
-// Multi-Form Popup System + Google Sheets Tracking
+// Complete Popup Form + Tracking System
+
+// Popup Form Functionality
+let formData = {};
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu
+    // Mobile Menu (existing)
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.querySelector('.nav-menu');
     if (mobileMenuBtn) {
@@ -11,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Close menu on link click
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenuBtn?.classList.remove('active');
@@ -18,192 +22,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Multi-Form Handlers
-    document.querySelectorAll('[data-open-form]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const formType = e.currentTarget.dataset.formType;
-            openForm(formType);
-        });
+    // Active nav link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
     });
 
-    document.querySelectorAll('.form-close').forEach(btn => {
+    // Popup Form Handlers
+    document.querySelectorAll('[data-open-form]').forEach(btn => {
+        btn.addEventListener('click', openComponentForm);
+    });
+
+    const formCloseBtns = document.querySelectorAll('.form-close');
+    formCloseBtns.forEach(btn => {
         btn.addEventListener('click', closeForm);
     });
 
-    // All Forms Submit
-    document.querySelectorAll('form[data-form]').forEach(form => {
-        form.addEventListener('submit', (e) => handleFormSubmit(e));
-    });
+    // Form Submit
+    const componentForm = document.getElementById('componentForm');
+    if (componentForm) {
+        componentForm.addEventListener('submit', handleFormSubmit);
+    }
 });
 
-// Form Types Config
-const FORM_CONFIG = {
-    components: { title: 'Component Request', sheet: 'Components' },
-    project: { title: 'Project Support', sheet: 'Project Support' },
-    lab: { title: 'Lab Access', sheet: 'Lab Access' },
-    '3d-print': { title: '3D Printing', sheet: '3D Printing' },
-    pcb: { title: 'PCB Training', sheet: 'PCB Training' },
-    plc: { title: 'PLC Training', sheet: 'PLC Training' },
-    prompt: { title: 'Prompt Engineering', sheet: 'Prompt Engineering' }
-};
-
-function openForm(formType) {
-    const config = FORM_CONFIG[formType];
-    const popup = document.getElementById('popupContainer');
-    
-    popup.innerHTML = generateFormHTML(config, formType);
-    popup.style.display = 'flex';
+// Open Component Form Popup
+function openComponentForm() {
+    document.getElementById('componentPopup').style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
     setTimeout(() => {
-        popup.style.opacity = '1';
-        popup.style.transform = 'scale(1)';
+        document.getElementById('componentPopup').style.opacity = '1';
+        document.getElementById('componentPopup').style.transform = 'scale(1)';
     }, 10);
-    
-    // Re-attach submit listener
-    document.querySelector('form[data-form]').addEventListener('submit', handleFormSubmit);
 }
 
-function generateFormHTML(config, formType) {
-    const fields = getFormFields(formType);
-    let formFields = '';
-    
-    fields.forEach(field => {
-        formFields += `
-            <div class="form-group ${field.row ? 'form-row-item' : ''}">
-                <label>${field.label}${field.required ? ' *' : ''}</label>
-                ${field.type === 'textarea' ? 
-                    `<textarea name="${field.name}" ${field.required ? 'required' : ''} placeholder="${field.placeholder}"></textarea>` :
-                    `<input type="${field.type}" name="${field.name}" ${field.required ? 'required' : ''} placeholder="${field.placeholder}">`
-                }
-            </div>
-        `;
-    });
-    
-    return `
-        <div class="popup-content">
-            <button class="form-close">&times;</button>
-            <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Orbitron', monospace;">
-                <i class="fas fa-${getIcon(formType)}" style="color: var(--primary-blue); margin-right: 1rem;"></i>
-                ${config.title}
-            </h2>
-            <form data-form="${formType}">
-                <div class="form-row">
-                    <div class="form-group form-row-item">
-                        <label>Name *</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-group form-row-item">
-                        <label>Phone *</label>
-                        <input type="tel" name="phone" required>
-                    </div>
-                </div>
-                ${formFields}
-                <div style="text-align: center; margin-top: 2rem;">
-                    <button type="submit" class="btn" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;">
-                        <i class="fas fa-paper-plane"></i> Send Request
-                    </button>
-                </div>
-            </form>
-        </div>
-    `;
+// Close Form
+function closeForm() {
+    const popup = document.getElementById('componentPopup');
+    popup.style.opacity = '0';
+    popup.style.transform = 'scale(0.8)';
+    document.body.style.overflow = 'auto';
+    setTimeout(() => {
+        popup.style.display = 'none';
+    }, 300);
 }
 
-function getFormFields(formType) {
-    const fields = {
-        components: [
-            { name: 'components', label: 'Components Needed', type: 'textarea', required: true, placeholder: 'Arduino Uno x2, HC-SR04 x5...' }
-        ],
-        project: [
-            { name: 'project_details', label: 'Project Details', type: 'textarea', required: true },
-            { name: 'deadline', label: 'Deadline', type: 'date' }
-        ],
-        lab: [
-            { name: 'purpose', label: 'Purpose', type: 'text', required: true },
-            { name: 'date_needed', label: 'Preferred Date', type: 'date' },
-            { name: 'duration', label: 'Duration (hours)', type: 'number' }
-        ],
-        '3d-print': [
-            { name: 'file_details', label: 'File Details', type: 'text', required: true, placeholder: 'STL file size, material needed' },
-            { name: 'quantity', label: 'Quantity', type: 'number' }
-        ],
-        pcb: [
-            { name: 'experience', label: 'Experience Level', type: 'text', placeholder: 'Beginner/Intermediate/Advanced' },
-            { name: 'schedule', label: 'Preferred Schedule', type: 'text' }
-        ],
-        plc: [
-            { name: 'industry', label: 'Industry', type: 'text', placeholder: 'Manufacturing/Automation/etc' },
-            { name: 'schedule', label: 'Preferred Schedule', type: 'text' }
-        ],
-        prompt: [
-            { name: 'experience', label: 'AI Experience', type: 'text', placeholder: 'Beginner/Intermediate/Advanced' },
-            { name: 'goals', label: 'Learning Goals', type: 'textarea' }
-        ]
-    };
-    return fields[formType] || [];
-}
-
-function getIcon(formType) {
-    const icons = {
-        components: 'shopping-cart',
-        project: 'tools',
-        lab: 'flask', 
-        '3d-print': 'print',
-        pcb: 'layer-group',
-        plc: 'microchip',
-        prompt: 'robot'
-    };
-    return icons[formType] || 'cog';
-}
-
+// Form Submit Handler
 async function handleFormSubmit(e) {
     e.preventDefault();
     
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    const formType = e.target.dataset.form;
-    const config = FORM_CONFIG[formType];
     
+    // Show loading
     const submitBtn = e.target.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
     
     try {
-        // Google Sheets Webhook
-        const response = await fetch('https://script.google.com/macros/s/YOUR-SCRIPT-ID/exec', {
+        // Send to Google Sheets (Webhook)
+        const response = await fetch('https://script.google.com/macros/s/YOUR-GOOGLE-SCRIPT-ID/exec', {
             method: 'POST',
-            body: new URLSearchParams({
-                ...data,
-                form_type: config.sheet,
-                timestamp: new Date().toISOString()
-            })
+            body: new URLSearchParams(data)
         });
         
         if (response.ok) {
-            showSuccess(config.title);
+            showSuccess();
+            e.target.reset();
         } else {
-            throw new Error('Network error');
+            alert('Error! Please try again.');
         }
     } catch (error) {
-        alert('Error! Try WhatsApp chat.');
+        alert('Network error! Please try WhatsApp.');
     }
     
+    // Reset button
     submitBtn.innerHTML = originalText;
     submitBtn.disabled = false;
 }
 
-function showSuccess(title) {
-    const popup = document.getElementById('popupContainer');
+// Success Animation
+function showSuccess() {
+    const popup = document.getElementById('componentPopup');
     popup.innerHTML = `
         <div style="text-align: center; padding: 4rem 2rem;">
             <div style="font-size: 5rem; color: #10b981; margin-bottom: 2rem; animation: bounce 1s;">
                 <i class="fas fa-check-circle"></i>
             </div>
             <h2 style="font-family: 'Orbitron', monospace; margin-bottom: 1rem;">Thank You!</h2>
-            <p style="font-size: 1.3rem; margin-bottom: 2rem;">
-                ${title} request received!<br>
-                <strong>We'll call in 30 minutes</strong>
+            <p style="font-size: 1.3rem; color: var(--text-muted); margin-bottom: 2rem;">
+                We'll call you in <strong>30 minutes</strong> with your quote!
             </p>
             <button onclick="closeForm()" class="btn" style="font-size: 1.2rem;">
                 <i class="fas fa-times"></i> Close
@@ -212,31 +122,168 @@ function showSuccess(title) {
     `;
 }
 
-function closeForm() {
-    const popup = document.getElementById('popupContainer');
-    popup.style.opacity = '0';
-    popup.style.transform = 'scale(0.8)';
-    document.body.style.overflow = 'auto';
-    setTimeout(() => popup.style.display = 'none', 300);
-}
-
-// Existing animations...
+// Existing functions (particles, scroll, etc.)
 window.addEventListener('scroll', () => {
-    document.querySelector('.navbar').style.background = window.scrollY > 100 ? 
-        'rgba(10, 10, 10, 0.98)' : 'rgba(10, 10, 10, 0.95)';
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+    } else {
+        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+    }
 });
 
 function createParticles() {
-    const container = document.getElementById('particles');
-    if (!container) return;
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
     for (let i = 0; i < 15; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
-        particle.style.width = particle.style.height = Math.random() * 3 + 1 + 'px';
-        container.appendChild(particle);
+        particle.style.width = particle.style.height = (Math.random() * 3 + 1) + 'px';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particlesContainer.appendChild(particle);
     }
 }
 
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
 createParticles();
+
+window.addEventListener('resize', () => {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.querySelector('.nav-menu');
+    if (window.innerWidth > 768) {
+        mobileMenuBtn?.classList.remove('active');
+        navMenu?.classList.remove('active');
+    }
+});
+/* Popup Form Styles */
+#componentPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+#componentPopup.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.popup-content {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--glow-neon), var(--shadow-soft);
+}
+
+.form-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.form-close:hover {
+    background: rgba(255,255,255,0.2);
+    color: var(--primary-blue);
+    transform: rotate(90deg);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: var(--glow-blue);
+    background: rgba(255,255,255,0.15);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .popup-content {
+        padding: 2rem 1.5rem;
+        margin: 1rem;
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
