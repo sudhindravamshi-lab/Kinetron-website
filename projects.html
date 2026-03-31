@@ -162,6 +162,68 @@
 
     <script src="script.js"></script>
     <script>
+        <!-- LOAD SCRIPTS -->
+    <script>
+        // PRELOADER
+        window.addEventListener('load',()=>{
+            const preloader=document.getElementById('preloader');
+            const progress=document.querySelector('.loader-progress');
+            let w=0;
+            const int=setInterval(()=>{
+                w+=Math.random()*12;
+                if(w>=100){
+                    w=100;clearInterval(int);
+                    setTimeout(()=>{
+                        preloader.style.opacity='0';
+                        setTimeout(()=>{
+                            preloader.style.display='none';
+                            document.body.classList.add('loaded');
+                        },500);
+                    },1000);
+                }
+                progress.style.width=w+'%';
+            },120);
+        });
+
+        // NAVBAR SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+            a.addEventListener('click',e=>{
+                e.preventDefault();
+                const t=document.querySelector(a.getAttribute('href'));
+                t&&t.scrollIntoView({behavior:'smooth'});
+            });
+        });
+
+        // CARD HOVER EFFECTS
+        document.querySelectorAll('[style*="position:absolute"][style*="top:0"]').forEach(el=>{
+            el.parentElement.addEventListener('mouseenter',()=>{
+                el.style.transform='scaleX(1)';
+            });
+            el.parentElement.addEventListener('mouseleave',()=>{
+                el.style.transform='scaleX(0)';
+            });
+        });
+
+        // SCROLL ANIMATIONS
+        const observer=new IntersectionObserver(e=>{
+            e.forEach(entry=>{
+                if(entry.isIntersecting)entry.target.style.transform='translateY(0)';
+            });
+       },{threshold:.1});
+        
+        document.querySelectorAll('.service-card,[style*="background:rgba(0,0,34,.85)"]').forEach(el=>{
+            el.style.transform='translateY(50px)';
+            el.style.transition='all .6s ease';
+            observer.observe(el);
+        });
+
+        // NAVBAR SHRINK
+        window.addEventListener('scroll',()=>{
+            document.querySelector('.navbar').classList.toggle('scrolled',window.scrollY>100);
+        });
+    </script>
+</body>
+</html>
         // Project details buttons
         document.querySelectorAll('.project-details-btn').forEach(btn => {
             btn.addEventListener('click', () => {
