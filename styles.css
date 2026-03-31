@@ -996,3 +996,214 @@ section {
     contain: layout style paint;
 }
     font-weight
+/* Mouse Trail Particles - JS Controlled */
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3) translateY(-30px);
+    }
+}
+
+/* Floating Particles - JS Controlled */
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Hero Content Entrance */
+.hero-title {
+    animation: heroTitleIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+}
+
+@keyframes heroTitleIn {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.hero-subtitle {
+    animation: fadeInUp 1s ease 0.9s both;
+}
+
+.hero-buttons {
+    animation: fadeInUp 1s ease 1.3s both;
+}
+
+/* Card Entrance Stagger */
+.service-card:nth-child(1),
+.category-card:nth-child(1),
+.project-card:nth-child(1),
+.product-card:nth-child(1),
+.course-card:nth-child(1) { animation-delay: 1.6s; }
+.service-card:nth-child(2),
+.category-card:nth-child(2),
+.project-card:nth-child(2),
+.product-card:nth-child(2),
+.course-card:nth-child(2) { animation-delay: 1.8s; }
+.service-card:nth-child(3),
+.category-card:nth-child(3),
+.project-card:nth-child(3),
+.product-card:nth-child(3),
+.course-card:nth-child(3) { animation-delay: 2s; }
+.service-card:nth-child(4),
+.category-card:nth-child(4),
+.project-card:nth-child(4),
+.product-card:nth-child(4),
+.course-card:nth-child(4) { animation-delay: 2.2s; }
+
+/* WhatsApp Pulse */
+.whatsapp-float {
+    animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+@keyframes whatsappPulse {
+    0%, 100% {
+        box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 25px 50px rgba(37, 211, 102, 0.8);
+        transform: scale(1.05);
+    }
+}
+
+/* Section Title Glow */
+.section-title {
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% {
+        text-shadow: 0 0 20px rgba(25, 131, 196, 0.5);
+    }
+    100% {
+        text-shadow: 
+            0 0 30px rgba(25, 131, 196, 0.8),
+            0 0 40px rgba(25, 131, 196, 0.4);
+    }
+}
+
+/* Button Hover Ripple */
+.btn {
+    overflow: hidden;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Navbar Background Scroll Effect */
+.navbar.scrolled {
+    background: rgba(0, 0, 34, 1) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer Glow */
+.footer-brand i {
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Form Field Float Labels */
+.form-group label {
+    position: absolute;
+    top: 1.3rem;
+    left: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--primary);
+}
+
+/* Success Message Bounce */
+.success-message {
+    animation: successBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successBounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Loading Skeleton */
+.skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Dark Mode Perfection */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-dark: #000011;
+    }
+}
+
+/* Landscape Mobile Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero { align-items: flex-start; padding-top: 10vh; }
+}
+
+/* Safari iOS Fixes */
+@supports (-webkit-touch-callout: none) {
+    .hero-bg {
+        will-change: unset;
+    }
+}
+
+/* Edge Case: Very Slow Connections */
+@media (network-type: slow-2g) {
+    .whatsapp-float,
+    .back-to-top {
+        display: none !important;
+    }
+}
+
+/* EOF - End of CSS */
