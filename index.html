@@ -1,79 +1,1018 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kinetron Technologies</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-body{margin:0;font-family:'Space Grotesk',sans-serif;background:#000022;color:#F2F2F2}
-header{position:sticky;top:0;background:#000022;padding:15px 40px;display:flex;justify-content:space-between;align-items:center}
-header h1{font-family:'Lexend';color:#1983C4}
-nav a{color:#F2F2F2;margin:0 10px;text-decoration:none}
-.hero{padding:100px 20px;text-align:center}
-.hero h2{font-size:2.5rem}
-.btn{background:#1983C4;color:white;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;margin:10px}
-.section{padding:60px 20px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-.card{background:#111133;padding:20px;border-radius:10px;text-align:center}
-form{display:flex;flex-direction:column;gap:10px;margin-top:20px}
-input,textarea{padding:10px;border-radius:5px;border:none}
-footer{text-align:center;padding:20px;background:#111133}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:15px;border-radius:50%;color:white;text-decoration:none}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetron Technologies - Build Real Engineering Skills</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1983C4;
+            --primary-light: #3099D5;
+            --accent: #ACEDFF;
+            --dark-bg: #000022;
+            --light-bg: #F2F2F2;
+            --white: #ffffff;
+            --shadow: 0 20px 40px rgba(25, 131, 196, 0.15);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--dark-bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Circuit Background */
+        .circuit-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(25,131,196,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(48,153,213,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(172,237,255,0.05) 0%, transparent 50%);
+            animation: circuitFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes circuitFlow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(180deg); }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 34, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 3rem;
+            color: #ccc;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(25, 131, 196, 0.3);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-5px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(25, 131, 196, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(25,131,196,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        /* Forms */
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(25, 131, 196, 0.2);
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(25, 131, 196, 0.3);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(25, 131, 196, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaa;
+        }
+
+        /* File Upload */
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload input[type=file] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(25, 131, 196, 0.2);
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            background: rgba(25, 131, 196, 0.3);
+        }
+
+        /* Lab Access Page */
+        .lab-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            animation: whatsappBounce 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        @keyframes whatsappBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 34, 0.95);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(25, 131, 196, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .tagline {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--dark-bg);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(25, 131, 196, 0.3);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: var(--white);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary);
+        }
+
+        .success-message {
+            background: rgba(25, 131, 196, 0.2);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--accent);
+        }
+    </style>
 </head>
 <body>
+    <div class="circuit-bg"></div>
+    
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Kinetron</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#lab">Lab Access</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-<header>
-<h1>Kinetron</h1>
-<nav>
-<a href="#services">Services</a>
-<a href="#courses">Courses</a>
-<a href="#lab">Lab</a>
-</nav>
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Build Real Engineering Skills That Get You Hired</h1>
+            <p>Electronics | Projects | 3D Printing | Courses</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Get Started</a>
+                <a href="https://wa.me/918792159643?text=Hi%20Kinetron%20Technologies!%20I'm%20interested%20in%20your%20services." target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                              </div>
+        </div>
+    </section>
 
-<section class="hero">
-<h2>Build Real Engineering Skills That Get You Hired</h2>
-<p>Electronics | Projects | 3D Printing | Courses</p>
-<button class="btn">Get Started</button>
-</section>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About Kinetron Technologies</h2>
+        <div class="about-content">
+            <p>Kinetron Technologies is your practical learning and innovation center where engineering students transform theoretical knowledge into real-world skills. We provide hands-on access to cutting-edge electronics labs, project guidance, and industry-standard tools to help you build a portfolio that gets you hired.</p>
+        </div>
+    </section>
 
-<section class="section" id="services">
-<h2>Services</h2>
-<div class="cards">
-<div class="card">Electronics Components</div>
-<div class="card">Project Support</div>
-<div class="card">Courses</div>
-<div class="card">3D Printing</div>
-<div class="card">Lab Access</div>
-</div>
-</section>
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal('electronicsModal')">
+                <div class="service-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>Electronics Components</h3>
+                <p>Get genuine electronic components for your projects. Fast delivery and competitive pricing.</p>
+            </div>
 
-<section class="section" id="courses">
-<h2>Courses</h2>
-<p>PCB | PLC | Prompt Engineering</p>
-</section>
+            <div class="service-card" onclick="openModal('projectModal')">
+                <div class="service-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3>Project Support</h3>
+                <p>Expert guidance for your academic and personal projects. From concept to completion.</p>
+            </div>
 
-<section class="section" id="lab">
-<h2>Lab Access</h2>
-<p>Book lab for projects and practice</p>
-<form>
-<input placeholder="Name">
-<input placeholder="Phone">
-<input placeholder="College">
-<input placeholder="Purpose">
-<input type="datetime-local">
-<button class="btn">Submit</button>
-</form>
-</section>
+            <div class="service-card" onclick="openModal('coursesModal')">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Courses</h3>
+                <p>PCB Design, PLC Programming, Prompt Engineering. Hands-on training with certification.</p>
+            </div>
 
-<footer>
-<p>📞 8792159643 | Peenya, Bangalore</p>
-<p>Innovating Beyond Boundaries</p>
-</footer>
+            <div class="service-card" onclick="openModal('3dModal')">
+                <div class="service-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <h3>3D Printing</h3>
+                <p>Professional 3D printing services. Upload your STL files and get high-quality prints.</p>
+            </div>
 
-<a class="whatsapp" href="https://wa.me/918792159643">W</a>
+            <div class="service-card" onclick="openModal('labModal')">
+                <div class="service-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h3>Lab Access</h3>
+                <p>24/7 access to our state-of-the-art electronics lab with expert guidance.</p>
+            </div>
+        </div>
+    </section>
 
-</body>
-</html>
+    <!-- Lab Access Section -->
+    <section id="lab" class="section">
+        <h2 class="section-title">Lab Access</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 3rem;">
+                Students can access our fully-equipped lab facilities for building and testing projects. Work at your own pace with expert guidance available.
+            </p>
+            
+            <div class="lab-features">
+                <div class="feature-item">
+                    <i class="fas fa-layer-group" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <span>PCB Workstations</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-soldering-iron" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <span>Soldering Stations</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-tools" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <span>Professional Tools</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-boxes" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <span>Components Stock</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chalkboard-teacher" style="color: var(--primary); font-size: 1.5rem;"></i>
+                    <span>Guidance Support</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" style="margin-top: 3rem; font-size: 1.3rem; padding: 1.2rem 3rem;" onclick="openModal('labModal')">
+                Book Lab Access
+            </button>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Electronics Components Modal -->
+    <div id="electronicsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('electronicsModal')">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">
+                <i class="fas fa-microchip"></i> Electronics Components Request
+            </h3>
+            <form id="electronicsForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>College</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Components Required</label>
+                    <textarea rows="3" placeholder="List components needed (e.g., Arduino Uno, resistors 1k x 10, capacitors 100uF x 5)" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="text" placeholder="Specify quantities">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+            </form>
+            <div id="electronicsSuccess" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>We will contact you within <strong>2 hours</strong> with component availability and pricing.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Support Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('projectModal')">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">
+                <i class="fas fa-project-diagram"></i> Project Support Enquiry
+            </h3>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>College</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Project Topic</label>
+                    <textarea rows="3" placeholder="Describe your project (e.g., IoT based home automation, gesture controlled robot)" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Enquiry</button>
+            </form>
+            <div id="projectSuccess" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>We will contact you within <strong>24 hours</strong> with detailed support plan.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses Modal -->
+    <div id="coursesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('coursesModal')">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">
+                <i class="fas fa-graduation-cap"></i> Course Registration
+            </h3>
+            <form id="coursesForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Course Selection</label>
+                    <select required>
+                        <option value="">Choose a course</option>
+                        <option value="pcb">PCB Design & Fabrication</option>
+                        <option value="plc">PLC Programming</option>
+                        <option value="prompt">Prompt Engineering</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3D Printing Modal -->
+    <div id="3dModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('3dModal')">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">
+                <i class="fas fa-cube"></i> 3D Printing Request
+            </h3>
+            <form id="3dForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>Upload STL File</label>
+                    <div class="file-upload">
+                        <input type="file" id="stlFile" accept=".stl" required>
+                        <label for="stlFile" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--primary);"></i>
+                            <div>
+                                <strong>Click to upload STL file</strong><br>
+                                <small>Max 50MB</small>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea rows="3" placeholder="Print material preference, quantity, dimensions, etc." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+            </form>
+            <div id="3dSuccess" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>We will review your file and contact you within <strong>24 hours</strong> with quote and timeline.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lab Access Modal -->
+    <div id="labModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('labModal')">&times;</span>
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">
+                <i class="fas fa-flask"></i> Book Lab Access
+            </h3>
+            <form id="labForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required>
+                </div>
+                <div class="form-group">
+                    <label>College</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Purpose</label>
+                    <select required>
+                        <option value="">Select purpose</option>
+                        <option value="project">Project Work</option>
+                        <option value="practice">Practice</option>
+                        <option value="learning">Learning</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date & Time</label>
+                    <input type="datetime-local" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Book Slot</button>
+            </form>
+            <div id="labSuccess" class="success-message" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <p>We will confirm your lab slot within <strong>2 hours</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918792159643?text=Hi%20Kinetron%20Technologies!%20I'm%20interested%20in%20your%20services." 
+       class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <div style="font-size: 1.5rem; font-weight: 600;">Kinetron Technologies</div>
+                <div>
+                    <i class="fas fa-phone"></i> <a href="tel:+918792159643" style="color: var(--white);">8792159643</a>
+                </div>
+                <div>
+                    <i class="fas fa-map-marker-alt"></i> Peenya, Bangalore
+                </div>
+            </div>
+            <div class="tagline">Innovating Beyond Boundaries</div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 34, 0.98)';
+                navbar.style.padding = '0.8rem 0';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 34, 0.95)';
+                navbar.style.padding = '1rem 0';
+            }
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submissions
+        document.getElementById('electronicsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('electronicsSuccess').style.display = 'block';
+            setTimeout(() => closeModal('electronicsModal'), 3000);
+        });
+
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('projectSuccess').style.display = 'block';
+            setTimeout(() => closeModal('projectModal'), 3000);
+        });
+
+        document.getElementById('3dForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const file = document.getElementById('stlFile').files[0];
+            if (file && file.size > 50 * 1024 * 1024) {
+                alert('File size must be less than 50MB');
+                return;
+            }
+            this.style.display = 'none';
+            document.getElementById('3dSuccess').style.display = 'block';
+            setTimeout(() => closeModal('3dModal'), 3000);
+        });
+
+        document.getElementById('labForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.style.display = 'none';
+            document.getElementById('labSuccess').style.display = 'block';
+            setTimeout(() => closeModal('labModal'), 3000);
+        });
+
+        document.getElementById('coursesForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // WhatsApp redirect for courses
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const course = formData.get('course');
+            const message = `Hi Kinetron! I want to register for ${course}. My name is ${name} and phone is ${phone}.`;
+            window.open(`https://wa.me/918792159643?text=${encodeURIComponent(message)}`, '_blank');
+            closeModal('coursesModal');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+           
