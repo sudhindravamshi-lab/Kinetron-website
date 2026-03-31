@@ -488,6 +488,19 @@ section {
     section {
         padding: 60px 0;
     }
+    /* Enhanced Animations */
+body.loaded {
+    overflow-x: hidden;
+}
+
+.glow-hover:hover {
+    animation: glow-pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-pulse {
+    0% { filter: drop-shadow(0 0 5px var(--primary)); }
+    100% { filter: drop-shadow(0 0 20px var(--primary)); }
+}
     
     .service-card {
         padding: 2rem 1.5rem;
