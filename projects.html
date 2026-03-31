@@ -4,6 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Support - Kinetron Technologies</title>
+    <!-- CRITICAL: Load fonts FIRST -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- CRITICAL: Inline Critical CSS -->
+    <style>
+        /* MINIMAL CRITICAL CSS - LOADS FIRST */
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Space Grotesk',sans-serif;background:#000022;color:#ccc;line-height:1.6;overflow-x:hidden;position:relative}body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 20% 50%,rgba(25,131,196,0.3) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(48,153,213,0.3) 0%,transparent 50%),linear-gradient(135deg,#000022 0%,#000011 100%);z-index:-2;animation:bgPulse 8s ease-in-out infinite alternate}@keyframes bgPulse{0%{opacity:.8}100%{opacity:1}}.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;text-align:center;padding:0 20px}.hero-content{max-width:900px}.hero-title{font-family:'Lexend',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:#fff!important;margin-bottom:2rem;line-height:1.1;text-shadow:0 0 40px rgba(25,131,196,.6);animation:heroSlide 1s .5s both}.hero-subtitle{font-size:1.4rem;color:#ccc!important;margin-bottom:3rem;animation:fadeUp 1s .8s both}.hero-buttons{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s 1.2s both}@keyframes heroSlide{from{opacity:0;transform:translateY(60px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}.btn{padding:1.2rem 2.5rem;border:none;border-radius:50px;font-family:'Lexend',sans-serif;font-weight:600;color:#fff!important;text-decoration:none;display:inline-flex;align-items:center;gap:.7rem;transition:all .4s ease;cursor:pointer;font-size:1.1rem;position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:.5px}.btn-primary{background:linear-gradient(45deg,#1983C4,#3099D5);box-shadow:0 20px 40px rgba(25,131,196,.6)}.btn-primary:hover{transform:translateY(-8px) scale(1.05);box-shadow:0 30px 60px rgba(25,131,196,.8)}.btn-whatsapp{background:linear-gradient(45deg,#25D366,#20B858);box-shadow:0 20px 40px rgba(37,211,102,.6)}.btn-whatsapp:hover{transform:translateY(-8px) scale(1.05);box-shadow:0 30px 60px rgba(37,211,102,.8)}.glow-btn::before{content:'';position:absolute;top:-2rem;left:-2rem;width:4rem;height:4rem;background:radial-gradient(circle,rgba(255,255,255,.6) 0%,transparent 70%);border-radius:50%;opacity:0;transition:all .6s ease;animation:shine 1.5s infinite}.glow-btn:hover::before{opacity:1;animation:shinePulse 1.5s ease}@keyframes shine{0%{transform:scale(0) rotate(0deg);opacity:0}50%{opacity:1}100%{transform:scale(4) rotate(180deg);opacity:0}}@keyframes shinePulse{0%{box-shadow:0 0 20px rgba(255,255,255,.8)}100%{box-shadow:0 0 40px rgba(255,255,255,1)}}.whatsapp-float{position:fixed;bottom:25px;right:25px;width:70px;height:70px;background:linear-gradient(45deg,#25D366,#20B858);color:#fff!important;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;text-decoration:none;box-shadow:0 20px 45px rgba(37,211,102,.6);z-index:10000!important;transition:all .3s ease;animation:pulse 2s infinite}@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 20px 45px rgba(37,211,102,.6)}50%{transform:scale(1.08);box-shadow:0 30px 60px rgba(37,211,102,.9)}}.whatsapp-float:hover{transform:scale(1.2) rotate(10deg);box-shadow:0 30px 70px rgba(37,211,102,.9)}@media (max-width:768px){.hero-buttons{flex-direction:column;align-items:center;gap:1rem}.btn{width:100%;justify-content:center;padding:1.2rem!important}}
+    </style>
+</head>
+<body>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="logo-spin">
+                <i class="fas fa-microchip" style="font-size:3.5rem;color:#1983C4"></i>
+                <span style="font-size:2.5rem;font-weight:800;color:#1983C4">Kinetron</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress" style="width:0%"></div>
+            </div>
+            <p style="margin-top:1rem;color:#666;font-size:1.1rem">Loading Engineering Hub...</p>
+        </div>
+    </div>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
