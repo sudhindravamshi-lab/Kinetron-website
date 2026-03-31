@@ -61,19 +61,64 @@
                     </p>
                 </div>
 
-                <!-- Google Form Embed Button -->
-                <div style="display: grid; place-items: center; gap: 1.5rem;">
-                    <a href="https://forms.gle/YOUR-COMPONENTS-FORM-LINK" target="_blank" class="btn" style="font-size: 1.3rem; padding: 1.5rem 4rem;">
-                        <i class="fas fa-file-alt"></i> Request Components Now
-                    </a>
-                    <p style="color: var(--text-muted); font-size: 1.1rem;">
-                        <i class="fas fa-clock" style="color: var(--primary-blue); margin-right: 0.5rem;"></i>
-                        We'll call you in <strong>30 minutes</strong> with quote & stock!
-                    </p>
+               <!-- Popup Trigger Buttons -->
+<div style="display: grid; place-items: center; gap: 1.5rem;">
+    <button data-open-form class="btn" style="font-size: 1.3rem; padding: 1.5rem 4rem; cursor: pointer;">
+        <i class="fas fa-shopping-cart"></i> Request Components Now
+    </button>
+    <p style="color: var(--text-muted); font-size: 1.1rem;">
+        <i class="fas fa-clock" style="color: var(--primary-blue); margin-right: 0.5rem;"></i>
+        We'll call you in <strong>30 minutes</strong>!
+    </p>
+</div>
+
+<!-- Popup Form -->
+<div id="componentPopup">
+    <div class="popup-content">
+        <button class="form-close">&times;</button>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Orbitron', monospace;">
+            <i class="fas fa-bolt" style="color: var(--primary-blue); margin-right: 1rem;"></i>
+            Component Request
+        </h2>
+        <form id="componentForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Name *</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" name="phone" required>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="form-group">
+                <label>WhatsApp (Optional)</label>
+                <input type="tel" name="whatsapp">
+            </div>
+            <div class="form-group">
+                <label>Components Needed *</label>
+                <textarea name="components" placeholder="e.g., Arduino Uno x2, HC-SR04 x5, L298N x1, Resistors 1k x10..." required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" placeholder="Total quantity">
+                </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" name="deadline">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Message (Optional)</label>
+                <textarea name="message" placeholder="Any specific requirements?"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;">
+                <i class="fas fa-paper-plane"></i> Send Request
+            </button>
+        </form>
+    </div>
+</div>
 
     <!-- Trust Indicators -->
     <section class="section" style="background: rgba(0,0,0,0.3);">
